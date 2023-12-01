@@ -5,8 +5,10 @@ const url = "https://taylorswiftapi.onrender.com/get?song=";
 const options = {
   method: "GET",
 };
+
 button.addEventListener("click", async () => {
   const selected = query.value;
+  console.log(selected);
   const response = await fetch(`${url}${selected}`);
   const info = await response.json();
   console.log(info);
