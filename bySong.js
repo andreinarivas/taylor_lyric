@@ -8,9 +8,12 @@ const options = {
 
 button.addEventListener("click", async () => {
   const selected = query.value;
-  console.log(selected);
+
   const response = await fetch(`${url}${selected}`);
-  const info = await response.json();
-  console.log(info);
-  result.innerHTML = `<div class="lyric" id="show"> <h3>"${info.quote}"</h3></div><div class="info"><h5>-Taylor Swift <br> ${info.song}<br>${info.album}</h5></div>`;
+  try {
+    const info = await response.json();
+    result.innerHTML = `<div class="lyric" id="show"> <h3>"${info.quote}"</h3></div><div class="info"><h5>-Taylor Swift <br> ${info.song}<br>${info.album}</h5></div>`;
+  } catch (error) {
+    result.innerHTML = `<div class="lyric" id="show"> <h3>No Taylor Swift song matches search</h3></div>`;
+  }
 });
